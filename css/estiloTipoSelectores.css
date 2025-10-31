@@ -1,0 +1,51 @@
+/*Selectores por clase*/
+.titulos{
+    color: blueviolet;
+    font-size: 30px;
+    background-color: lightgray;
+}
+
+/*Selectores por ID*/ /*Solo uno por página*/
+#id_titulo{
+    color: darkorange;
+    background-color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/*Selector por eventos (pseudo-clases)*/
+i:hover{
+    color: blue;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+input:focus{
+    background-color: greenyellow;
+    border: 3px solid black;
+}
+
+/*Selector por atributos*/
+[id]{
+    color: blue;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+img[alt*="uce"]{
+    border: 5px solid red;
+    border-radius: 20px;
+    width: 500px;
+}
+
+*{
+    /*Todos las declaraciones*/
+    margin: 10px;
+    padding: 10px;
+}
+
+p{
+    color: green;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: justify;
+}
