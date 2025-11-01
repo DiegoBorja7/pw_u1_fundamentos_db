@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller 5</title>
+    <script>
+        function changeColor(id_element, color) {
+            document.getElementById(id_element).style.color = color;
+            document.getElementById(id_element).style.backgroundColor = 'black';
+        }
+
+        function addElement(id_element, html){
+            document.getElementById(id_element).innerHTML = html;
+        }
+
+        function buildH1(){
+            return '<h1 id="id_h1">Calculadora</h1>';
+        }
+
+        function deleteElement(id_element){
+            document.getElementById(id_element).remove();
+        }
+
+        function hiddenElement(id_element){
+            document.getElementById(id_element).style.display = 'none';
+        }
+
+        function showElement(id_element){
+            document.getElementById(id_element).style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header></header>
+    <nav></nav>
+    <section>
+        <div id="id_div"></div>
+        <label id="id_label_num1" for="id_num1">Número 1</label>
+        <input type="number" id="id_num1"><br><br>
+        <label id="id_label_num2" for="id_num2">Número 2</label>
+        <input type="number" id="id_num2"><br><br>
+        <button id="id_boton_cambiar1" onclick="changeColor('id_label_num1', '#80E002')">Cambiar Color label 1</button>
+        <button id="id_boton_cambiar2" onclick="changeColor('id_label_num2', '#46C9E0')">Cambiar Color label 2</button>
+        <button id="id_boton_agregar" onclick="addElement('id_div', buildH1())">Agregar</button>
+        <button id="id_boton_eliminar" onclick="deleteElement('id_h1')">Eliminar</button>
+        <button id="id_boton_ocultar" onclick="hiddenElement('id_label_num1')">Ocultar</button>
+        <button id="id_boton_mostrar" onclick="showElement('id_label_num1')">Mostrar</button>
+
+    </section>
+    <aside></aside>
+    <footer></footer>
+    
+</body>
+</html>
