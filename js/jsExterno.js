@@ -38,11 +38,13 @@ function multiply(num1, num2) {
 
 function divide(num1, num2) {
   if (num2 === 0) {
-    return "Error: División por cero";
+    alert("Error: División por cero.");
+    return null;
   }
   return num1 / num2;
 }
 
+//funcion principal que llama a las demas segun la operacion
 function calculate(operation) {
   let num1 = parseFloat(document.getElementById("id_num1").value);
   let num2 = parseFloat(document.getElementById("id_num2").value);
@@ -65,5 +67,15 @@ function calculate(operation) {
       result = "Operación no válida";
   }
 
-  document.getElementById("id_result").innerText = result;
+  document.getElementById("id_result").value = result;
+
+  // Validar que los campos no estén vacíos
+  const v1 = document.getElementById("id_num1").value;
+  const v2 = document.getElementById("id_num2").value;
+
+  if (v1.trim() === "" || v2.trim() === "") {
+    alert("Por favor, complete ambos campos antes de calcular.");
+    document.getElementById("id_result").value = "";
+    return;
+  }
 }
