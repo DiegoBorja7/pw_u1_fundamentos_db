@@ -205,9 +205,138 @@ function fundamentalsJS() {
   } else {
     console.log("El profesor tiene 18 años");
   }
-  
+
   //for para recorrer las propiedades del objeto
   for (let clave in teacher) {
     console.log(clave + ": " + teacher[clave]);
   }
+
+  //06 de noviembre de 2025
+
+  const student1 = {
+    name: "Diego",
+    lastName: "Borja",
+    age: 25,
+    ecuadorian: true,
+    genre: "M",
+    city: "Quito",
+  };
+
+  const student2 = {
+    name: "Andres",
+    lastName: "Simbaña",
+    age: 25,
+    ecuadorian: true,
+    genre: "M",
+    city: "Quito",
+  };
+
+  const arrayStudents = [
+    student1,
+    student2,
+    {
+      name: "Diego2",
+      lastName: "Simbaña",
+      age: 25,
+      ecuadorian: true,
+      genre: "M",
+      city: "Quito",
+    },
+  ];
+
+  console.log(arrayStudents[2]);
+
+  /*desestructuración*/
+
+  const array1 = [10, 20, 30, 40, 50];
+  console.log("Arreglo original: " + array1);
+
+  const [p1, p2, p3, p4, p5, p6] = array1;
+  console.log("Elemento 1: " + p1);
+  console.log("Elemento 2: " + p2);
+  console.log("Elemento 3: " + p3);
+  console.log("Elemento 4: " + p4);
+  console.log("Elemento 5: " + p5);
+  console.log("Elemento 6: " + p6);
+
+  const [first, , , , last] = array1;
+  console.log("Primer elemento: " + first);
+  console.log("Último elemento: " + last);
+
+  //declaracion de manera indirecta
+  const [a, b, c] = [100, 200, 300];
+  console.log("Arreglo original: " + [100, 200, 300]);
+  console.log("a: " + a);
+  console.log("b: " + b);
+  console.log("c: " + c);
+
+  print(array1);
+
+  //funcion para imprimir el contenido de un arreglo
+  function print(array) {
+    console.log("Contenido del arreglo: ");
+    console.log(array);
+  }
+
+  //destructuración de objetos
+  const student3 = {
+    name1: "Diego",
+    lastName: "Simbaña",
+    age: 25,
+    ecuadorian: true,
+    genre: "M",
+    city1: "Quito",
+  };
+
+  const {name1, city1} = student3;
+  console.log("Nombre del estudiante: " + name1);
+  console.log("Ciudad del estudiante: " + city1);
+
+  //en 1 paso
+  const {name:nombre, city:ciudad} = {
+    name: "Andres",
+    lastName: "Simbaña",
+    age: 25,
+    ecuadorian: true,
+    genre: "M",
+    city: "Manta",
+  };
+
+  console.log("Nombre del estudiante: " + nombre);
+  console.log("Ciudad del estudiante: " + ciudad);
+
+  //operador rest
+  [a1, b2, ...rest] = [10, 20, 30, 40, 50];
+  console.log(rest);
+
+  const student4 = {
+    name: "Diego",
+    lastName: "Simbaña",
+    age: 25,
+    ecuadorian: true,
+    genre: "M",
+    city: "Quito",
+    address:{
+      street: "Av.America",
+      neibghborhood: "La Carolina",
+      Number: 155
+    }
+  };
+
+  console.log("Estudiante 4: ", student4);
+
+  console.log("Dirección: ", student4.address);
+  console.log("Númeracion: " + student4.address.Number);
+
+  //desestructuración anidada
+  const {age:edad, address} = student4;
+  console.log("Edad: " + edad);
+  console.log("Dirección: ", address);
+  const{street} = address;
+  console.log("Calle: " + street);
+
+  const {address:{neibghborhood, street:calle, Number:numeracion}} = student4;
+  console.log("Barrio: " + neibghborhood);
+  console.log("Calle: " + calle);
+  console.log("Número de la dirección: " + numeracion);
 }
