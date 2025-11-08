@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller 7 &copy;</title>
-</head>
-<body>
-    <header></header>
-    <nav></nav>
-    <section>
-        <div class="calculadora">
-            <label for="">0 + 1 = 1</label><br>
-            <button>C</button>
-            <button>&lArr;</button>
-            <button>%</button>
-            <button>/</button><br>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>*</button><br>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>-</button><br>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>+</button><br>
-            <button>0</button>
-            <button>.</button>
-            <button>&sum;=</button>
-        </div>
-    </section>
-    <aside></aside>
-    <footer></footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller 8 &#128187;</title>
+
+    <link rel="stylesheet" href="../css/calculadoraFinal.css" />
+    <script src="../js/calculadoraFinal.js"></script>
+  </head>
+  <body>
+    <div class="container">
+        <header><h1>Calculadora</h1></header>
+        <nav>Barra de navegacion</nav>
+        <section>
+            <div id="calculadora">
+                <div id="display"></div>
+                <button class="cancel" onclick="clearDisplay()">C</button>
+                <button class="operations" onclick="backspace()">&#8678;</button>
+                <button class="operations" onclick="updateDisplay('/')">%</button>
+                <button class="operations" onclick="updateDisplay('/')">/</button>
+                <button onclick="updateDisplay('7')">7</button>
+                <button onclick="updateDisplay('8')">8</button>
+                <button onclick="updateDisplay('9')">9</button>
+                <button class="operations" onclick="updateDisplay('*')">*</button>
+                <button onclick="updateDisplay('4')">4</button>
+                <button onclick="updateDisplay('5')">5</button>
+                <button onclick="updateDisplay('6')">6</button>
+                <button class="operations" onclick="updateDisplay('-')">-</button>
+                <button onclick="updateDisplay('1')">1</button>
+                <button onclick="updateDisplay('2')">2</button>
+                <button onclick="updateDisplay('3')">3</button>
+                <button class="operations" onclick="updateDisplay('+')">+</button>
+                <button onclick="updateDisplay('0')">0</button>
+                <button onclick="updateDisplay('.')">.</button>
+                <button id="equals" onclick="calculateResult()">=</button>
+            </div>
+        </section>
+        <aside></aside>
+        <footer>pie</footer>
+    </div>
+  </body>
+
+  
 </html>
