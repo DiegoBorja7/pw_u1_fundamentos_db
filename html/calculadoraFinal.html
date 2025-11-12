@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Taller 8 &#128187;</title>
+    <title>Tarea 3 Calculadora&#128187;</title>
 
     <link rel="stylesheet" href="../css/calculadoraFinal.css" />
     <script src="../js/calculadoraFinal.js"></script>
@@ -11,18 +11,17 @@
   <body>
     <div class="container">
         <header><h1>Calculadora</h1></header>
-        <nav>Barra de navegacion</nav>
         <section>
             <div id="calculadora">
-                <div id="display"></div>
+                <div id="display">0</div>
                 <button class="cancel" onclick="clearDisplay()">C</button>
                 <button class="operations" onclick="backspace()">&#8678;</button>
-                <button class="operations" onclick="updateDisplay('/')">%</button>
+                <button class="operations" onclick="updateDisplay('%')">%</button>
                 <button class="operations" onclick="updateDisplay('/')">/</button>
                 <button onclick="updateDisplay('7')">7</button>
                 <button onclick="updateDisplay('8')">8</button>
                 <button onclick="updateDisplay('9')">9</button>
-                <button class="operations" onclick="updateDisplay('*')">*</button>
+                <button class="operations" onclick="updateDisplay('x')">x</button>
                 <button onclick="updateDisplay('4')">4</button>
                 <button onclick="updateDisplay('5')">5</button>
                 <button onclick="updateDisplay('6')">6</button>
@@ -36,8 +35,6 @@
                 <button id="equals" onclick="calculateResult()">=</button>
             </div>
         </section>
-        <aside></aside>
-        <footer>pie</footer>
     </div>
   </body>
 
