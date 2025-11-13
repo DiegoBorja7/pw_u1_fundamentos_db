@@ -1,41 +1,57 @@
 //variable globales
 let shouldResetDisplay = false;
 
+// Constantes para operadores
+const OPERATORS = ['+', '-', '*', '/', '%', 'x'];
+const INVALID_END_CHARS = /[\+\-\*\/x]$/;
+
+// Precedencia de operadores
+const PRECEDENCE = {
+    '+': 1, '-': 1,
+    '*': 2, '/': 2, 'x': 2
+};
+
+// Operaciones matemáticas
+const OPERATIONS = {
+    '+': (a, b) => a + b,
+    '-': (a, b) => a - b,
+    '*': (a, b) => a * b,
+    'x': (a, b) => a * b,
+    '/': (a, b) => b === 0 ? NaN : a / b
+};
+
 function updateDisplay(value) {
-    let display = document.getElementById('display');
-    
-    // Si hay "Error", limpiar automáticamente antes de agregar nuevo valor
+    const display = document.getElementById('display');
+
+    // Limpiar error automáticamente
     if (display.innerText === 'Error') {
         display.innerText = '';
     }
-    
-    // Si es un operador
-    if (['+', '-', '*', '/', '%', 'x'].includes(value)) {
-        if (display.innerText === '' || display.innerText.endsWith('+') || 
-            display.innerText.endsWith('-') || display.innerText.endsWith('*') || 
-            display.innerText.endsWith('/') || display.innerText.endsWith('%') ||
-            display.innerText.endsWith('x')) {
-            return; // Evita operadores duplicados o al inicio
+
+    // Si es operador
+    if (OPERATORS.includes(value)) {
+        const currentText = display.innerText;
+        if (currentText === '' || currentText.endsWith(value)) {
+            return; // Evita duplicados o al inicio
         }
         display.innerText += value;
-        shouldResetDisplay = false; // Permitir agregar números después de operador
+        shouldResetDisplay = false;
         return;
     }
-    
-    // Si es un número o punto
+
+    // Si es número o punto
     if (shouldResetDisplay) {
         display.innerText = value;
         shouldResetDisplay = false;
     } else if (display.innerText === '0') {
-        display.innerText = value; // Reemplaza '0' inicial
+        display.innerText = value;
     } else {
         display.innerText += value;
     }
 }
 
 function clearDisplay() {
-    let display = document.getElementById('display');
-    display.innerText = '0';
+    document.getElementById('display').innerText = '0';
     shouldResetDisplay = false;
 }
 
@@ -44,23 +60,14 @@ function backspace() {
     display.innerText = display.innerText.slice(0, -1);
 }
 
-// Función auxiliar para determinar precedencia de operadores
+// Función auxiliar para determinar precedencia
 function precedence(op) {
-    if (op === '+' || op === '-') return 1;
-    if (op === '*' || op === '/' || op === 'x') return 2;
-    return 0;
+    return PRECEDENCE[op] || 0;
 }
 
 // Función auxiliar para aplicar operación
 function applyOp(a, b, op) {
-    switch (op) {
-        case '+': return a + b;
-        case '-': return a - b;
-        case '*': return a * b;
-        case 'x': return a * b; // x también es multiplicación
-        case '/': return b === 0 ? NaN : a / b; // Evitar división por cero
-        default: return 0;
-    }
+    return OPERATIONS[op] ? OPERATIONS[op](a, b) : 0;
 }
 
 // Función para evaluar expresión matemática de manera segura
@@ -68,24 +75,19 @@ function evaluateExpression(expression) {
     const tokens = expression.replace(/\s+/g, '').match(/(\d+\.?\d*|\+|\-|\*|\/|%|x)/g);
     if (!tokens) return NaN;
 
-    const values = []; // Stack para números
-    const ops = [];    // Stack para operadores
+    const values = [];
+    const ops = [];
 
-    for (let i = 0; i < tokens.length; i++) {
-        const token = tokens[i];
-
+    for (const token of tokens) {
         if (!isNaN(token)) {
-            // Es un número
             values.push(parseFloat(token));
         } else if (token === '%') {
-            // % convierte el último número a porcentaje (multiplica por 0.01)
             if (values.length > 0) {
                 values[values.length - 1] *= 0.01;
             } else {
-                return NaN; // % sin número anterior es error
+                return NaN;
             }
-        } else if (token === '+' || token === '-' || token === '*' || token === '/' || token === 'x') {
-            // Es un operador
+        } else if (OPERATORS.includes(token) && token !== '%') {
             while (ops.length > 0 && precedence(ops[ops.length - 1]) >= precedence(token)) {
                 const val2 = values.pop();
                 const val1 = values.pop();
@@ -96,7 +98,6 @@ function evaluateExpression(expression) {
         }
     }
 
-    // Aplicar operaciones restantes
     while (ops.length > 0) {
         const val2 = values.pop();
         const val1 = values.pop();
@@ -111,15 +112,8 @@ function calculateResult() {
     const display = document.getElementById('display');
     const expression = display.innerText.trim();
 
-    // Validaciones básicas
-    if (expression === '' || /[^\d\+\-\*\/\%\.\s x]/.test(expression)) {
-        display.innerText = 'Error';
-        shouldResetDisplay = true;
-        return;
-    }
-
-    // Verificar que no termine con operador (excepto % que es válido)
-    if (/[\+\-\*\/x]$/.test(expression)) {
+    // Validaciones combinadas
+    if (expression === '' || /[^\d\+\-\*\/\%\.\s x]/.test(expression) || INVALID_END_CHARS.test(expression)) {
         display.innerText = 'Error';
         shouldResetDisplay = true;
         return;
@@ -131,7 +125,6 @@ function calculateResult() {
         display.innerText = 'Error';
         shouldResetDisplay = true;
     } else {
-        // Redondear a 2 decimales máximo
         display.innerText = Math.round(result * 100) / 100;
         shouldResetDisplay = true;
     }
