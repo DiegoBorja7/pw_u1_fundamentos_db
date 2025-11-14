@@ -18,7 +18,7 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(194, 11, 11, 0.1);
-    width: 300px;
+    width: 400px;
     color: #000000;
 }   
 
@@ -29,22 +29,38 @@ body {
     font-size: 24px
 }
 
+
+/* Cada <p> actúa como una pequeña cuadricula: etiqueta + asterisco en la fila superior,
+   input en la fila inferior ocupando todo el ancho. Esto evita que el input empuje
+   el asterisco hacia abajo. */
+p {
+    display: grid;
+    grid-template-columns: 1fr 28px; /* input ocupará la columna amplia, asterisco la estrecha */
+    grid-template-rows: auto auto;
+    gap: 4px 8px;
+    align-items: start;
+    margin-bottom: 10px;
+    position: relative;
+}
+
 p::before {
     content: attr(type);
-    display: block;
+    grid-column: 1 / -1; /* etiqueta en la fila superior, ocupa ambas columnas */
+    grid-row: 1 / 2;
     font-size: 14px;
-    margin-bottom: 5px;
     font-weight: bold;
     color: #333333;
+    align-self: center;
 }
 
 input{
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
+    grid-column: 1 / 2; /* input en la columna amplia */
+    grid-row: 2 / 3;
 }
 
 input:focus {
@@ -72,4 +88,24 @@ footer {
     text-align: center;
     font-size: 12px;
     color: #777777;
+}
+
+.msg_error{
+    background: #ef7878;
+    border-left: 5px solid #ff0000;
+    color: #ffffff;
+    padding: 10px;
+    display: none;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.error_asterisco{
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3; /* a la derecha del input, misma fila */
+    align-self: center;
+    justify-self: start;
 }

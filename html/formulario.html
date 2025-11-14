@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Taller 9</title>
+    <title>Taller 10</title>
     <link rel="stylesheet" href="../css/formulario.css" />
     <script src="../js/formulario.js"></script>
   </head>
@@ -14,13 +14,16 @@
         <nav></nav>
         <section>
           <form action="">
-            <h2 id="title">Nuevo estudiante</h2>
-            <p type="Nombre"><input type="text" id="nombre"></p>
-            <p type="Apellido"><input type="text" id="apellido"></p>
-            <p type="Fecha de nacimiento"><input type="date" id="fechaNacimiento"></p>
-            <p type="Correo electrónico"><input type="email" id="correoElectronico"></p>
-            <p type="Contraseña"><input type="password" id="contrasena"></p>
-            <button id="saveBtn">Guardar</button>
+            <h2 id="title">Nuevo Estudiante</h2>
+            <div id="msg_error" class="msg_error">
+              <p>Por favor complete todos los campos</p>
+            </div>
+            <p type="Nombre"><input type="text" id="id_nombre"><span id="id_error_nombre" class="error_asterisco"></span></p>
+            <p type="Apellido"><input type="text" id="id_apellido"><span id="id_error_apellido" class="error_asterisco"></span></p>
+            <p type="Fecha de nacimiento"><input type="date" id="id_fechaNacimiento"></p>
+            <p type="Correo electrónico"><input type="email" id="id_correoElectronico"><span id="id_error_correoElectronico" class="error_asterisco"></span></p>
+            <p type="Contraseña"><input type="password" id="id_contrasena"></p>
+            <button id="saveBtn" onclick="save()">Guardar</button>
           </form>
         </section>
       </div>
