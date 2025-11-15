@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller 11 - Formulario para tarjetas</title>
+    <link rel="stylesheet" href="../css/formularioTarjeta.css" />
+    <script src="../js/formularioTarjeta.js"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <header></header>
+      <nav>
+        <div class="image">
+            <img src="../img/credit card.png" alt="Tarjeta de crédito" class="creditcard-img"/>        
+        </div>
+        
+        <div class="form">
+            <form action="">
+                <h2 id="title">Payment Details</h2>
+                <div id="msg_error" class="msg_error">
+                  <p>Por favor complete todos los campos</p>
+                </div>
+                <p type="Cardholder Name">
+                    <input type="text" id="id_nombreTarjeta" placeholder="Mrs. Kate Smith">
+                    <span id="id_error_nombreTarjeta" class="error_asterisco"></span>
+                </p>
+                
+                <p type="Card Number">
+                    <input type="text" id="id_numeroTarjeta" placeholder="0000 0000 0000 0000" maxlength="19">
+                    <span id="id_error_numeroTarjeta" class="error_asterisco"></span>
+                </p>
+                
+                <div class="form-row">
+                    <p type="Exp Date">
+                        <input type="text" id="id_fechaExpiracion" placeholder="MM/YY" maxlength="5" pattern="(0[1-9]|1[0-2])\/\d{2}" required/>
+                        <span id="id_error_fechaExpiracion" class="error_asterisco"></span>
+                    </p>
+                    
+                    <p type="CVV">
+                        <span class="info-icon" title="3 o 4 dígitos en el reverso de tu tarjeta"></span>
+                        <input type="text" id="id_cvv" placeholder="0000" maxlength="4">
+                        <span id="id_error_cvv" class="error_asterisco"></span>
+                    </p>
+                </div>
+                
+                <button id="submitBtn" type="button" onclick="save()">Confirm</button>
+            </form>
+        </div>
+      </nav>
+      <section></section>
+      <footer></footer>
+    </div>
+  </body>
+</html>

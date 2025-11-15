@@ -1,5 +1,11 @@
 function save() {
     validateFields();
+    
+    // Si después de la validación no hay mensaje de error, mostramos el alert
+    const msg = document.getElementById('msg_error');
+    if (!msg || msg.style.display === "none" || msg.innerText.trim() === "") {
+        alert("Formulario enviado con éxito.");
+    }
 }
 
 function validateFields() {
@@ -9,22 +15,50 @@ function validateFields() {
     let email = document.getElementById('id_correoElectronico').value;
     let password = document.getElementById('id_contrasena').value;
 
+    // Primero limpiamos todos los asteriscos
+    hideMessage();
+
+    let errors = []; // Array para almacenar los mensajes de error
+
     if(name === "" ) {
-        showMessage("Por favor complete el nombre.");
+        errors.push("Por favor complete el nombre.");
         showAsterisk('id_error_nombre');
     }
 
-     if(lastName === "" ) {
-        showMessage("Por favor complete el apellido.");
+    if(lastName === "" ) {
+        errors.push("Por favor complete el apellido.");
         showAsterisk('id_error_apellido');
     }
 
+    if(birthDate === "") {
+        errors.push("Por favor complete la fecha de nacimiento.");
+        showAsterisk('id_error_fechaNacimiento');
+    }
+
     if(email ===""){
-        showMessage("Por favor complete el correo electrónico.");
+        errors.push("Por favor complete el correo electrónico.");
         showAsterisk('id_error_correoElectronico');
     } else if (!validateEmail(email)) {
-        showMessage("Por favor ingrese un correo electrónico válido.");
+        errors.push("Por favor ingrese un correo electrónico válido.");
         showAsterisk('id_error_correoElectronico'); 
+    }
+
+    if(password ===""){
+        errors.push("Por favor complete la contraseña.");
+        showAsterisk('id_error_contrasena');
+    }
+
+
+    // Si hay errores, mostramos el primer mensaje o un mensaje general si son varios
+    if (errors.length > 1) {
+        showMessage("Complete los campos faltantes.");
+        return;
+    } else if (errors.length === 1) {
+        showMessage(errors[0]);
+        return;
+    }
+    if(errors.length > 0) {
+        showMessage(errors[0]);
     }
     
 }
